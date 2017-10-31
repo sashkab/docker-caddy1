@@ -1,0 +1,14 @@
+# replace localhost with your hostname
+
+localhost:80 {
+    # tls ssl@host.domain.com
+    gzip
+
+    root /app
+    fastcgi / phpfpm:9000 php
+    errors visible
+    log stdout
+    errors stderr
+
+    # header / Strict-Transport-Security "max-age=31536000"
+}
