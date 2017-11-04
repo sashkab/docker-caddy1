@@ -11,4 +11,10 @@ localhost:80 {
     errors stderr
 
     # header / Strict-Transport-Security "max-age=31536000"
+
+    status 403 /forbidden
+    rewrite {
+        if {path} match /(config.php|\.htaccess|cache)
+        to /forbidden
+    }
 }
