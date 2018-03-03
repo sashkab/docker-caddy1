@@ -14,7 +14,7 @@ RUN set -xe \
     && /go/src/github.com/mholt/caddy/caddy/caddy --version
 
 
-FROM alpine:latest
+FROM alpine:3.7
 RUN apk --no-cache add ca-certificates
 
 COPY --from=builder /go/src/github.com/mholt/caddy/caddy/caddy /usr/bin/caddy
