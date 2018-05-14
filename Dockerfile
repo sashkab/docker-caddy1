@@ -28,7 +28,5 @@ WORKDIR /www
 
 EXPOSE 80 443
 
-RUN caddy -agree
-
 ENTRYPOINT ["/usr/bin/caddy"]
-CMD ["--conf", "/etc/Caddyfile", "--log", "stdout"]
+CMD ["-agree", "--conf", "/etc/Caddyfile", "--log", "stdout"]
