@@ -1,4 +1,4 @@
-FROM alpine:3.7 as builder
+FROM alpine:3.8 as builder
 
 LABEL description="caddy server"
 LABEL maintainer="github@compuix.com"
@@ -17,7 +17,7 @@ RUN set -xe \
     && /go/src/github.com/mholt/caddy/caddy/caddy --version
 
 
-FROM alpine:3.7
+FROM alpine:3.8
 RUN apk --no-cache add ca-certificates
 
 COPY --from=builder /go/src/github.com/mholt/caddy/caddy/caddy /usr/bin/caddy
