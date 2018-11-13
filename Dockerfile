@@ -9,7 +9,7 @@ RUN set -xe \
     && go get github.com/mholt/caddy/caddy \
     && go get github.com/caddyserver/builds \
     && cd $GOPATH/src/github.com/mholt/caddy/caddy \
-    && git checkout v0.11.0 \
+    && git checkout v0.11.1 \
     && grep "enableTelemetry =" caddymain/run.go \
     && sed -i.old -e 's/enableTelemetry = true/enableTelemetry = false/' caddymain/run.go \
     && grep "enableTelemetry =" caddymain/run.go \
