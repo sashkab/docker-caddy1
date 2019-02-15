@@ -10,6 +10,10 @@ localhost:80 {
     log stdout
     errors stderr
 
+#     ipfilter / {
+#         rule allow
+#         ip 127.0.0.1
+#     }
     # header / Strict-Transport-Security "max-age=31536000"
 
     status 403 /forbidden
