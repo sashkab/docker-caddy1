@@ -1,9 +1,9 @@
-FROM golang:1.11.5-alpine3.9 as builder
+FROM golang:1.12.0-alpine3.9 as builder
 
 LABEL description="caddy server" maintainer="github@compuix.com"
 
 ENV GOPATH /go
-ENV VERSION v0.11.4
+ENV VERSION v0.11.5
 ENV ME -c user.name='dockerfile' -c user.email='dockerfile@localhost'
 
 RUN set -xe \
