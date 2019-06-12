@@ -1,4 +1,4 @@
-FROM golang:1.12.0-alpine3.9 as builder
+FROM golang:1.12-alpine as builder
 
 LABEL description="caddy server" maintainer="github@compuix.com"
 
@@ -10,13 +10,13 @@ WORKDIR /src
 RUN set -xe \
     && apk add --no-cache git musl-dev \
     && go mod download \
-    && go build -v -o ./caddy -ldflags '-s -w' ./caddy.go \
-    && ./caddy -version
+    && go install \
+    && "${GOPATH}/bin/caddy" -version
 
 FROM alpine:3.9
 RUN apk --no-cache add ca-certificates
 
-COPY --from=builder /src/caddy /usr/bin/caddy
+COPY --from=builder /go/bin/caddy /usr/bin/caddy
 COPY index.html /www/index.html
 
 VOLUME /root/.caddy /www
