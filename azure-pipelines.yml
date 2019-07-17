@@ -1,0 +1,15 @@
+trigger:
+- master
+
+pr:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- script: |
+    set -e
+    docker build -t docker-caddy1 .
+
+  displayName: 'build'
