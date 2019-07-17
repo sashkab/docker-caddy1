@@ -7,7 +7,8 @@ Run [Caddy][1] webserver inside a docker container.
 ### Command line
 
 ```sh
-docker ...  # FIXME
+docker run -it --rm -v $(pwd)/Caddyfile:/etc/Caddyfile \
+  -v $(pwd)/caddy-data:/root/.caddy sashk/docker-caddy1
 ```
 
 ### docker-compose
@@ -17,7 +18,7 @@ version: "3"
 
 services:
   caddy:
-    image: #FIXME
+    image: sashk/docker-caddy1
     restart: always
     volumes:
       - ./Caddyfile:/etc/Caddyfile:ro
