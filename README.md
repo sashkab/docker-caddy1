@@ -20,7 +20,7 @@ services:
     image: #FIXME
     restart: always
     volumes:
-      - ./caddy/Caddyfile:/etc/Caddyfile:ro
+      - ./Caddyfile:/etc/Caddyfile:ro
       - caddy:/root/.caddy
     ports:
      - "80:80"
