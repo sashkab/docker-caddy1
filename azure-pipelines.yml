@@ -11,6 +11,6 @@ steps:
 - script: |
     set -e
     docker build -t docker-caddy1 .
-    docker run -it --rm docker-caddy1 -version
+    docker run --rm docker-caddy1 -version
 
   displayName: 'build'
