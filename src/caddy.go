@@ -4,7 +4,7 @@ import (
 	"github.com/caddyserver/caddy/caddy/caddymain"
 
 	_ "github.com/pyed/ipfilter"
-	// _ "github.com/hacdias/caddy-webdav"
+        _ "github.com/hacdias/caddy-webdav"
 )
 
 func main() {
