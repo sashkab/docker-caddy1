@@ -4,16 +4,17 @@ localhost:80 {
     # tls ssl@host.domain.com
     gzip
 
-    root /app
-    fastcgi / phpfpm:9000 php
-    errors visible
+    root /www
+
+errors visible
     log stdout
     errors stderr
 
-#     ipfilter / {
-#         rule allow
-#         ip 127.0.0.1
-#     }
+    # ipfilter / {
+    #     rule allow
+    #     ip 127.0.0.1
+    # }
+    
     # header / Strict-Transport-Security "max-age=31536000"
 
     status 403 /forbidden
