@@ -19,10 +19,10 @@ RUN apk --no-cache add ca-certificates
 COPY --from=builder /go/bin/caddy /usr/bin/caddy
 COPY index.html /www/index.html
 
-VOLUME /root/.caddy /www
+VOLUME /root/.caddy
 WORKDIR /www
 
 EXPOSE 80 443
 
 ENTRYPOINT ["/usr/bin/caddy"]
-CMD ["-agree", "--conf", "/etc/Caddyfile", "--log", "stdout"]
+CMD ["-agree", "--conf", "/etc/caddy/Caddyfile", "--log", "stdout"]
