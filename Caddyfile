@@ -1,21 +1,29 @@
 # replace localhost with your hostname
 
 localhost:80 {
+    # uncomment following two lines when enabling ssl, change email address
     # tls ssl@host.domain.com
+    # header / Strict-Transport-Security "max-age=31536000"
+
     gzip
-
     root /www
-
-errors visible
     log stdout
     errors stderr
 
+    # to enable ipfilter, uncomment following lines, fix an  ip address
     # ipfilter / {
     #     rule allow
     #     ip 127.0.0.1
     # }
-    
-    # header / Strict-Transport-Security "max-age=31536000"
+
+    # basicauth user htpasswd=../etc/caddy/htpasswd {
+    #    realm "dav"
+    #    /dav
+    # }
+
+    # webdav /dav {
+    #     scope /dav
+    # }
 
     status 403 /forbidden
     rewrite {

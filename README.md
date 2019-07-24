@@ -13,7 +13,7 @@ mkdir www caddy-data
 ```
 
 ```sh
-docker run -it --rm -v $(pwd)/Caddyfile:/etc/Caddyfile \
+docker run -it --rm -v $(pwd)/Caddyfile:/etc/caddy/Caddyfile \
   -v $(pwd)/caddy-data:/root/.caddy -v $(pwd)/www:/www sashk/docker-caddy1
 ```
 
@@ -27,16 +27,15 @@ services:
     image: sashk/docker-caddy1
     restart: always
     volumes:
-      - ./Caddyfile:/etc/Caddyfile:ro
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy:/root/.caddy
-      - www:/www
+      - ./path/to/www:/www
     ports:
      - "80:80"
      - "443:443"
 
 volumes:
   caddy:
-  www:
 ```
 
 [1]: https://github.com/caddyserver/caddy
