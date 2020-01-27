@@ -1,7 +1,5 @@
 FROM golang:1.13-alpine as builder
 
-LABEL description="caddy server" maintainer="github@compuix.com"
-
 ENV GOPATH /go
 # ENV GO111MODULE "on"
 COPY ./src /src
@@ -14,6 +12,9 @@ RUN set -xe \
     && "${GOPATH}/bin/caddy" -version
 
 FROM alpine:3.11
+
+LABEL description="caddy server" maintainer="github@compuix.com" version="2020.01.26"
+
 RUN apk --no-cache add ca-certificates
 
 COPY --from=builder /go/bin/caddy /usr/bin/caddy
