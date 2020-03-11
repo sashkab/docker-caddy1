@@ -1,0 +1,50 @@
+name: Build caddy1 image
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+  schedule:
+    - cron: '0 12 * * 5'
+
+env:
+  IMAGE_NAME: docker-caddy1
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: build and start
+      run: |
+        set -e
+        docker build . --file Dockerfile --tag image
+        docker run --rm image -version
+
+  push:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Log into registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+    - name: Build image
+      run: docker build . --file Dockerfile --tag image
+
+    - name: Push image
+      run: |
+        IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+        VERSION=$(date "+%Y.%m.%d")
+        echo IMAGE_ID=$IMAGE_ID
+        echo VERSION=$VERSION
+        docker tag image $IMAGE_ID:$VERSION
+        docker push $IMAGE_ID:$VERSION
+        docker tag image $IMAGE_ID:latest
+        docker push $IMAGE_ID:latest
