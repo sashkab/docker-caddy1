@@ -10,9 +10,9 @@ RUN set -xe \
     && go install \
     && "${GOPATH}/bin/caddy" -version
 
-FROM alpine:3.11
+FROM alpine:3.12
 
-LABEL description="caddy server" maintainer="github@compuix.com" version="2020.03.11"
+LABEL description="caddy server" maintainer="github@compuix.com" version="2020.06.01"
 
 RUN apk --no-cache add ca-certificates
 
