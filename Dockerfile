@@ -10,7 +10,7 @@ RUN set -xe \
     && go install \
     && "${GOPATH}/bin/caddy" -version
 
-FROM alpine:3.12
+FROM alpine:3.14.3
 
 LABEL description="caddy server" maintainer="github@compuix.com" version="2020.06.01"
 
